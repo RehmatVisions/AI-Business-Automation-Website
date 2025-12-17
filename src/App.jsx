@@ -1,5 +1,5 @@
  import React from 'react'
-
+import Home from './components/AI';
  import Home from AIAutomationLanding;
 const App = () => {
   return (
