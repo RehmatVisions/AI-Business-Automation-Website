@@ -1,6 +1,6 @@
  import React from 'react'
 
- 
+ import Home from AIAutomationLanding;
 const App = () => {
   return (
     <div>
@@ -18,7 +18,7 @@ const App = () => {
         Start Your Feature
       </h1>
 
-       
+       <Home/>
     </div>
   )
 }
