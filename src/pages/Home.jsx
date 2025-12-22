@@ -1,5 +1,5 @@
-import React from "react";
-import AI from "./assets/AI.png";
+import AI from "../assets/AI.png";
+
 export default function AIAutomationLanding() {
   return (
     <main className="font-sans antialiased overflow-hidden">
