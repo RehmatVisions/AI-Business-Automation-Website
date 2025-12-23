@@ -13,9 +13,8 @@ export default defineConfig({
     target: 'es2015',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom']
+        manualChunks(id) {
+          if (id.includes('node_modules')) return 'vendor';
         }
       }
     }
