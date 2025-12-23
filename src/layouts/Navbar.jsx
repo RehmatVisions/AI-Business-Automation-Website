@@ -1,34 +1,41 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useCallback, useMemo } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = ({ 
-  logo = "AI Automation", 
+  logo = "CodeCelix", 
   navLinks = [
     { name: "Home", path: "/" },
     { name: "Solutions", path: "/solutions" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" }
+    { name: "Industries & Case Studies", path: "/industries" },
+    { name: "Pricing & Contact", path: "/pricing" }
   ],
-  ctaButton = { text: "Get Started", href: "#get-started" }
+  ctaButton = { text: "Get Started", path: "/pricing" }
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 10);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+  const handleScroll = useCallback(() => {
+    setIsScrolled(window.scrollY > 10);
   }, []);
 
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-    document.body.style.overflow = !isOpen ? 'hidden' : 'unset';
-  };
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
-  const closeSidebar = () => {
+  const toggleSidebar = useCallback(() => {
+    setIsOpen(prev => {
+      const newState = !prev;
+      document.body.style.overflow = newState ? 'hidden' : 'unset';
+      return newState;
+    });
+  }, []);
+
+  const closeSidebar = useCallback(() => {
     setIsOpen(false);
     document.body.style.overflow = 'unset';
-  };
+  }, []);
 
   useEffect(() => () => document.body.style.overflow = 'unset', []);
 
@@ -40,12 +47,24 @@ const Navbar = ({
   );
 
   const NavLink = ({ link, className, onClick, children }) => {
-    const baseClass = `relative px-5 py-3 text-sm font-semibold text-gray-700 hover:text-gray-900 transition-all duration-300 rounded-xl overflow-hidden ${className}`;
+    const isActive = link.path && location.pathname === link.path;
+    const baseClass = `relative px-5 py-3 text-sm font-semibold transition-all duration-300 rounded-xl overflow-hidden ${
+      isActive 
+        ? 'text-indigo-600 bg-indigo-50' 
+        : 'text-gray-700 hover:text-gray-900'
+    } ${className}`;
     const content = (
       <>
         <span className="relative z-10">{link.name}</span>
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-50 via-purple-50 to-indigo-50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-xl" />
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-8 rounded-full" />
+        {!isActive && (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-50 via-purple-50 to-indigo-50 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-xl" />
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300 group-hover:w-8 rounded-full" />
+          </>
+        )}
+        {isActive && (
+          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full" />
+        )}
         {children}
       </>
     );
@@ -58,7 +77,12 @@ const Navbar = ({
   };
 
   const MobileNavLink = ({ link, index, onClick }) => {
-    const baseClass = `flex items-center px-4 py-4 text-gray-700 font-semibold rounded-xl transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-50 group-hover:to-purple-50 group-hover:text-indigo-700 group-hover:translate-x-2 transform ${isOpen ? `animate-slide-in-${index}` : ''}`;
+    const isActive = link.path && location.pathname === link.path;
+    const baseClass = `flex items-center px-4 py-4 font-semibold rounded-xl transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-indigo-50 group-hover:to-purple-50 group-hover:text-indigo-700 group-hover:translate-x-2 transform ${
+      isActive 
+        ? 'bg-indigo-50 text-indigo-700' 
+        : 'text-gray-700'
+    } ${isOpen ? `animate-slide-in-${index}` : ''}`;
     const content = (
       <>
         <span className="flex-1">{link.name}</span>
@@ -107,12 +131,12 @@ const Navbar = ({
               {/* CTA Button */}
               {ctaButton && (
                 <div className="ml-8">
-                  <a href={ctaButton.href} className="group relative inline-flex items-center px-8 py-3 text-sm font-bold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 rounded-full shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-105 overflow-hidden">
+                  <Link to={ctaButton.path} className="group relative inline-flex items-center px-8 py-3 text-sm font-bold text-white bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 rounded-full shadow-lg shadow-indigo-500/30 hover:shadow-xl hover:shadow-indigo-500/50 transition-all duration-300 hover:scale-105 overflow-hidden">
                     <span className="relative z-10">{ctaButton.text}</span>
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 via-purple-700 to-indigo-800 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
                     <ArrowIcon className="ml-2 w-4 h-4 transition-all duration-300 group-hover:translate-x-1 group-hover:scale-110" />
-                  </a>
+                  </Link>
                 </div>
               )}
             </div>
@@ -162,10 +186,10 @@ const Navbar = ({
           {/* CTA Button */}
           {ctaButton && (
             <div className="absolute bottom-6 left-6 right-6">
-              <a href={ctaButton.href} onClick={closeSidebar} className={`flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/50 hover:scale-105 group ${isOpen ? 'animate-slide-up' : ''}`} style={{ animationDelay: '400ms' }}>
+              <Link to={ctaButton.path} onClick={closeSidebar} className={`flex items-center justify-center w-full px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 transition-all duration-300 hover:shadow-xl hover:shadow-indigo-500/50 hover:scale-105 group ${isOpen ? 'animate-slide-up' : ''}`} style={{ animationDelay: '400ms' }}>
                 <span>{ctaButton.text}</span>
                 <ArrowIcon className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-              </a>
+              </Link>
             </div>
           )}
         </div>

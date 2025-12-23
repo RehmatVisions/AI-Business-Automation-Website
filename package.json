@@ -1,13 +1,13 @@
 {
-  "name": "ai-bussiness-automation-website",
+  "name": "ai-business-automation-website",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",

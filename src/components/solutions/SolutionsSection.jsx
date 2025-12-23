@@ -37,7 +37,7 @@ const SolutionsSection = () => {
         'Seamless handoff to human agents when needed'
       ],
       ctaText: 'Deploy AI Chatbot',
-      onCtaClick: () => console.log('AI Chatbot CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '⚙️',
@@ -52,7 +52,7 @@ const SolutionsSection = () => {
         'Real-time workflow monitoring and alerts'
       ],
       ctaText: 'Automate Workflows',
-      onCtaClick: () => console.log('Workflow Automation CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '📊',
@@ -67,7 +67,7 @@ const SolutionsSection = () => {
         'Integration with popular CRM platforms'
       ],
       ctaText: 'Enhance CRM',
-      onCtaClick: () => console.log('CRM Solutions CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '📢',
@@ -82,7 +82,7 @@ const SolutionsSection = () => {
         'Multi-channel marketing orchestration'
       ],
       ctaText: 'Boost Marketing',
-      onCtaClick: () => console.log('Marketing Automation CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '📈',
@@ -97,7 +97,7 @@ const SolutionsSection = () => {
         'Integration with business intelligence tools'
       ],
       ctaText: 'Analyze Data',
-      onCtaClick: () => console.log('Data Analytics CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '🔒',
@@ -112,7 +112,7 @@ const SolutionsSection = () => {
         'Compliance monitoring and reporting automation'
       ],
       ctaText: 'Secure Business',
-      onCtaClick: () => console.log('Cybersecurity AI CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '💰',
@@ -127,7 +127,7 @@ const SolutionsSection = () => {
         'Regulatory compliance and tax automation'
       ],
       ctaText: 'Optimize Finance',
-      onCtaClick: () => console.log('Financial Intelligence CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '👥',
@@ -142,7 +142,7 @@ const SolutionsSection = () => {
         'Predictive analytics for employee retention'
       ],
       ctaText: 'Transform HR',
-      onCtaClick: () => console.log('HR Automation CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '📦',
@@ -157,7 +157,7 @@ const SolutionsSection = () => {
         'Cost optimization and procurement automation'
       ],
       ctaText: 'Optimize Supply Chain',
-      onCtaClick: () => console.log('Supply Chain Intelligence CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '🎯',
@@ -172,7 +172,7 @@ const SolutionsSection = () => {
         'Omnichannel experience optimization'
       ],
       ctaText: 'Enhance CX',
-      onCtaClick: () => console.log('Customer Experience AI CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '🏭',
@@ -187,7 +187,7 @@ const SolutionsSection = () => {
         'Energy consumption optimization and sustainability'
       ],
       ctaText: 'Optimize Manufacturing',
-      onCtaClick: () => console.log('Manufacturing Intelligence CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     },
     {
       icon: '🌐',
@@ -202,7 +202,7 @@ const SolutionsSection = () => {
         'Change management and employee training programs'
       ],
       ctaText: 'Transform Digitally',
-      onCtaClick: () => console.log('Digital Transformation CTA clicked')
+      onCtaClick: () => window.location.href = '/pricing'
     }
   ];
 
@@ -243,7 +243,7 @@ const SolutionsSection = () => {
 
           {/* Category Filter Tabs */}
           <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {categories.map((category) => (
+            {categories.map((category, index) => (
               <button
                 key={category.key}
                 onClick={() => setFilter(category.key)}
@@ -306,10 +306,16 @@ const SolutionsSection = () => {
             Get started with our AI-powered solutions today and see immediate improvements in efficiency and growth.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-indigo-700 font-semibold px-8 py-3 rounded-xl hover:scale-105 transition-all duration-200 shadow-lg">
+            <button 
+              className="bg-white text-indigo-700 font-semibold px-8 py-3 rounded-xl hover:scale-105 transition-all duration-200 shadow-lg"
+              onClick={() => window.location.href = '/pricing'}
+            >
               Schedule Consultation
             </button>
-            <button className="border-2 border-white text-white px-8 py-3 rounded-xl hover:bg-white hover:text-indigo-700 transition-all duration-200">
+            <button 
+              className="border-2 border-white text-white px-8 py-3 rounded-xl hover:bg-white hover:text-indigo-700 transition-all duration-200"
+              onClick={() => window.location.href = '/pricing'}
+            >
               View Pricing
             </button>
           </div>

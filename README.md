@@ -1,16 +1,123 @@
-# React + Vite
+# CodeCelix - AI Business Automation Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive website for CodeCelix AI business automation solutions built with React, Vite, and Tailwind CSS.
 
-Currently, two official plugins are available:
+## ✅ FIXED: Website Now Running Successfully
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Previous Issue**: The website was experiencing infinite loading due to a syntax error in `src/pages/Pricing.jsx`
+**Solution Applied**: Fixed malformed comment syntax that was breaking the build process
+**Current Status**: Website is now running smoothly on `http://localhost:3001/`
 
-## React Compiler
+## 🚀 Performance Optimizations Applied
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🔧 Issues Fixed:
+- ✅ **Syntax Error**: Corrected malformed comment in Pricing component
+- ✅ **Build Process**: Development server now starts without errors
+- ✅ **Hot Module Replacement**: Real-time updates working correctly
 
-## Expanding the ESLint configuration
+### ⚡ Performance Improvements:
+- **Lazy Loading**: OptimizedImage component with intersection observer
+- **Code Splitting**: Lazy loaded components for better initial load times
+- **Optimized Re-renders**: Added useCallback and useMemo hooks
+- **Performance Monitoring**: Added web vitals tracking and performance logging
+- **Hardware Acceleration**: GPU-accelerated animations for smooth performance
+- **Image Optimization**: Smart image loading with placeholders and error handling
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Tech Stack
+
+- **Frontend**: React 19, React Router DOM
+- **Styling**: Tailwind CSS 4.x
+- **Build Tool**: Vite with Rolldown
+- **Linting**: ESLint with React hooks and refresh plugins
+
+## 🛠️ Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd ai-business-automation-website
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+   The application will be available at `http://localhost:3001/` (or next available port)
+
+## 📝 Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint for code quality
+
+## 🏗️ Project Structure
+
+```
+src/
+├── assets/          # Static assets (images, etc.)
+├── components/      # Reusable React components
+│   └── solutions/   # Solutions-specific components
+├── layouts/         # Layout components (Navbar, Footer)
+├── pages/           # Page components
+├── utils/           # Performance utilities and helpers
+├── App.jsx          # Main App component
+├── main.jsx         # Application entry point
+└── index.css        # Global styles with performance optimizations
+```
+
+## 📱 Pages Overview
+
+1. **Home** (`/`) - Landing page with hero section, features, and technology stack
+2. **Solutions** (`/solutions`) - Comprehensive AI solutions showcase
+3. **Industries** (`/industries`) - Industry-specific use cases and case studies
+4. **Pricing** (`/pricing`) - Pricing plans and contact form
+
+## 🔧 Performance Features
+
+- **Code Splitting**: Vendor and router chunks separated
+- **Minification**: Terser minification for production builds
+- **Image Optimization**: Optimized image component for better loading
+- **CSS Optimization**: Tailwind CSS purging for smaller bundle size
+- **Performance Monitoring**: Built-in performance tracking and logging
+- **Smooth Animations**: Hardware-accelerated animations with reduced motion support
+
+## 🌐 Development Status
+
+✅ **Website is now fully functional and optimized**
+- Development server running on `http://localhost:3001/`
+- All syntax errors resolved
+- Performance optimizations implemented
+- Hot module replacement working
+- All components loading correctly
+
+### Performance Monitoring
+
+The website includes built-in performance monitoring that logs:
+- Page load times
+- Component render performance  
+- Slow loading warnings (>3 seconds)
+
+Check the browser console for performance metrics during development.
+
+## 🚀 Deployment
+
+### Build for Production
+```bash
+npm run build
+```
+
+The build artifacts will be stored in the `dist/` directory.
+
+## 📞 Support
+
+For support and questions, please contact the development team or create an issue in the repository.
+
+## 📄 License
+
+This project is proprietary software for CodeCelix. All rights reserved.
